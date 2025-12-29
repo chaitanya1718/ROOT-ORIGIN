@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://172.31.156.216/api",
+  baseURL: "http://localhost:5173/api",
 });
 
 // 🔹 REQUEST: attach token
