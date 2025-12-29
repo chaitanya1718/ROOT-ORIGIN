@@ -1,0 +1,69 @@
+.carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+.shine-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shine 2.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    right: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.carousel-sec {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scrollX 25s linear infinite;
+}
+.feedback-card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* infinite animation */
+@keyframes scrollX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

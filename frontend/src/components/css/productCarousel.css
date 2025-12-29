@@ -1,0 +1,164 @@
+.carousel-section {
+  padding: 1.5rem;
+}
+
+.carousel-title {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #111827;
+
+}
+
+/* Horizontal scroll container */
+.carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar (optional) */
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.price-box {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+
+.price {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+
+.loading,
+.error {
+  padding: 1rem;
+}
+
+
+
+/* Product Card */
+.product-card {
+  min-width: 12rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+
+
+  transition: transform 0.2s ease;
+}
+
+/* img */
+.img-sec{
+  height: 10rem;
+}
+
+
+
+/* category card */
+.category-card {
+  min-width: 8rem;
+  height:8rem;
+  background: #ffffff;
+  border-radius: 10%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0.25rem;
+
+
+
+}
+
+
+
+
+
+/* .product-card:hover {
+  transform: scale(0.9);
+  transition: all 0.3s;
+} */
+
+/* .product-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+} */
+
+.product-below{
+  background-color: antiquewhite;
+
+}
+
+.product-info h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+
+
+}
+
+.product-info{
+  height:9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 15px 15px 12px 12px;
+  margin:0px;
+  /* border-top: gray solid 1px; */
+}
+
+
+.org-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin-top:-4px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.card-hover{
+  transition: all ease 0.5s;
+}
+.card-hover:hover{
+  transform: scale(1.08);
+}
+
+
+@Media (max-width:768px){
+  
+  .cat-product-container{
+    justify-content: baseline;
+    padding:1rem;
+  }
+
+
+.category-render {
+  min-width: 10rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  background-color: aqua;
+  transition: transform 0.2s ease;
+}
+}

@@ -1,0 +1,53 @@
+/* Auth pages only */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fb;
+}
+
+/* Card */
+.auth-page form {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Title */
+.auth-page h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+.auth-page input {
+  height: 48px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+/* Button */
+.auth-page button {
+  height: 48px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Forgot link */
+.auth-page .forgot {
+  text-align: right;
+  font-size: 13px;
+}
