@@ -59,7 +59,7 @@ const addToCart = async (req, res) => {
 
 // ================= GET CART =================
 const getCart = async (req, res) => {
-  console.log("REQ.USER:", req.user);
+  
   const userId = req.user.id;
 
   const cart = await Cart.findOne({ user: userId })

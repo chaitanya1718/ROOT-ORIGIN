@@ -17,17 +17,16 @@ const [justLoggedIn, setJustLoggedIn] = useState(false);
 
   useEffect(() => {
     const restoreAuth = async () => {
-        //    console.log("Auth restoring...");
+   
       const storedUser = JSON.parse(localStorage.getItem("user"));
       if (!storedUser?.token) {
-        //  console.log("No token found");
+     
         setLoading(false);
         return;
       }
 
       try {
         const { data } = await api.get("/auth/me");
-        //    console.log("Auth restored:", data);
         setUser({ ...data, token: storedUser.token });
       } catch {
          localStorage.removeItem("user");

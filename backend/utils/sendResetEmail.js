@@ -20,8 +20,8 @@ const sendResetEmail = async (email, resetLink) => {
       <p>This link expires in 15 minutes.</p>
     `,
   });
-  console.log("Sending reset email to:", email);
-console.log("Reset link:", resetLink);
+
+
 };
 
 module.exports = sendResetEmail;

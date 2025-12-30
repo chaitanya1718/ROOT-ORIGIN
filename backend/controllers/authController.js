@@ -64,12 +64,12 @@ const verifyOtp = async (req, res) => {
   }
 
   // Hash password now
-  const hashedPassword = await bcrypt.hash(record.password, 10);
+
 
   const user = await User.create({
     email: record.email,
     mobile: record.mobile,
-    password: hashedPassword,
+    password: record.password,
     role: "user",
   });
 

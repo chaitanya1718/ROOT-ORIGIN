@@ -3,7 +3,7 @@ const transporter = require("../config/email");
 const sendInvoiceEmail = async (to, pdfBuffer, orderId) => {
 
      try {
-    console.log("📧 Sending invoice email to:", to);
+
 
     const info = await transporter.sendMail({
       from: `"MyStore" <${process.env.EMAIL_USER}>`,
@@ -18,7 +18,6 @@ const sendInvoiceEmail = async (to, pdfBuffer, orderId) => {
       ],
     });
 
-    console.log("✅ Email sent successfully:", info.messageId);
   } catch (err) {
     console.error("❌ Email sending failed:", err.message);
   }
