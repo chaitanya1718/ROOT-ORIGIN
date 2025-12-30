@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
-import "../../pages/admin/Admin.css";
+import "./admin.css";
 
 const AdminProducts = () => {
   const admin = JSON.parse(localStorage.getItem("admin"));
