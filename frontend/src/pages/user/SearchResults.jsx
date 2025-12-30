@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import api from "../../api/axios";
 import { addToCart } from "../../services/cartService";
-import "../../components/css/ProductCarousel.css";
+import "../../components/css/productCarousel.css";
 
 
 const normalize = (str = "") => str.toLowerCase().replace(/[\s-]/g, "");

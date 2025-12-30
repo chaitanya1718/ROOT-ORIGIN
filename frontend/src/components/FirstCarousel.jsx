@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { addToCart } from "../services/cartService";
-import "./css/ProductCarousel.css";
+import "./css/productCarousel.css";
 
 const FirstCarousel = () => {
   const [products, setProducts] = useState([]);
