@@ -1,5 +1,59 @@
-node_modules/
+# Secrets and environment files
 .env
+.env.*
+**/.env
+**/.env.*
+*.local
+*.secret
+*.secrets
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+!.env.example
+!.env.sample
+
+# Private docs and local notes
+project details.txt
+**/project details.txt
+*.private.txt
+*.notes.txt
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
 dist/
 build/
+.next/
+out/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test and coverage
 coverage/
+.nyc_output/
+
+# Cache and temp
+.cache/
+.tmp/
+tmp/
+temp/
+*.tmp
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo

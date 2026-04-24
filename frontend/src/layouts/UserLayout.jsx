@@ -1,25 +1,27 @@
 import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
-import { useEffect,useState } from "react";
-import {useAuth} from "../context/AuthContext";
-
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const UserLayout = () => {
-   const { justLoggedIn, setJustLoggedIn } = useAuth();
+  const { justLoggedIn, setJustLoggedIn } = useAuth();
   const [toast, setToast] = useState("");
 
   useEffect(() => {
     if (justLoggedIn) {
-      setToast("Login successful 🎉");
+      setToast("Login successful");
       setJustLoggedIn(false);
 
-      setTimeout(() => setToast(""), 3000);
+      const timeoutId = setTimeout(() => setToast(""), 3000);
+      return () => clearTimeout(timeoutId);
     }
-  }, [justLoggedIn]);
+
+    return undefined;
+  }, [justLoggedIn, setJustLoggedIn]);
 
   return (
     <>
-     {toast && <div className="cart-toast">{toast}</div>}
+      {toast && <div className="cart-toast">{toast}</div>}
       <Header />
       <Outlet />
     </>

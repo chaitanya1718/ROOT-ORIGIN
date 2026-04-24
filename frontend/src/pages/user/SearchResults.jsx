@@ -4,33 +4,23 @@ import api from "../../api/axios";
 import { addToCart } from "../../services/cartService";
 import "../../components/css/productCarousel.css";
 
-
 const normalize = (str = "") => str.toLowerCase().replace(/[\s-]/g, "");
-
 const eventKeywords = ["event", "events", "birthday", "marriage", "wedding"];
 
 const SearchResults = () => {
   const [products, setProducts] = useState([]);
-  const [showBulk, setShowBulk] = useState(false);
+  const [manualShowBulk, setManualShowBulk] = useState(null);
   const [toast, setToast] = useState("");
-
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
 
   const normalizedQuery = normalize(query);
+  const autoShowBulk = eventKeywords.some((keyword) => normalizedQuery.includes(keyword));
+  const showBulk = manualShowBulk ?? autoShowBulk;
 
-  // 🔹 Fetch products once
   useEffect(() => {
     api.get("/products").then((res) => setProducts(res.data));
   }, []);
-
-  // 🔹 Auto-enable bulk when event keywords found
-  useEffect(() => {
-    const isEventSearch = eventKeywords.some((k) =>
-      normalizedQuery.includes(k)
-    );
-    setShowBulk(isEventSearch);
-  }, [normalizedQuery]);
 
   const filteredProducts = products.filter((product) => {
     const name = normalize(product.name);
@@ -46,37 +36,25 @@ const SearchResults = () => {
     return matchesText && !product.isBulkProduct;
   });
 
-  const getDiscountedPrice = (price, discount) =>
-    price - (price * discount) / 100;
+  const getDiscountedPrice = (price, discount) => price - (price * discount) / 100;
 
   const showToast = (message) => {
     setToast(message);
-    setTimeout(() => setToast(""), 3000); // 3 seconds
+    setTimeout(() => setToast(""), 3000);
   };
 
   return (
-
-    
-
     <section className="carousel-section">
-
-{toast && (
-  <div className="cart-toast">
-    {toast}
-  </div>
-)}
+      {toast && <div className="cart-toast">{toast}</div>}
 
       <div className="flex justify-between items-center">
         <h4 className="carousel-title">
           Results for: <b>{query}</b>
         </h4>
 
-        {/* 🔴 BULK TOGGLE */}
         <button
-          onClick={() => setShowBulk(!showBulk)}
-          className={`px-3 py-1 rounded border ${
-            showBulk ? "bg-yellow-200 border-2! border-yellow-400 " : ""
-          }`}
+          onClick={() => setManualShowBulk(!showBulk)}
+          className={`px-3 py-1 rounded border ${showBulk ? "bg-yellow-200 border-2! border-yellow-400 " : ""}`}
         >
           {showBulk ? "Show normal Products" : "Show Bulk Products"}
         </button>
@@ -106,10 +84,8 @@ const SearchResults = () => {
 
                 <div className="flex justify-between">
                   <div>
-                    ₹{getDiscountedPrice(product.price, product.discount)}
-                    {product.discount > 0 && (
-                      <p className="org-price">₹{product.price}</p>
-                    )}
+                    Rs.{getDiscountedPrice(product.price, product.discount)}
+                    {product.discount > 0 && <p className="org-price">Rs.{product.price}</p>}
                   </div>
 
                   {product.quantity > 0 ? (
@@ -128,9 +104,7 @@ const SearchResults = () => {
                 </div>
 
                 {product.isBulkProduct && (
-                  <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded">
-                    BULK
-                  </span>
+                  <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded">BULK</span>
                 )}
               </div>
             </div>

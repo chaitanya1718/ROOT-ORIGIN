@@ -2,20 +2,34 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const bootstrapAdmin = require("./utils/bootstrapAdmin");
 
 dotenv.config();
-connectDB();
 
 const app = express();
 
-// ✅ CORS MUST be before routes
-app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://root-origin.onrender.com" // your frontend domain (if deployed)
-  ],
-  credentials: true,
-}));
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+  process.env.CORS_ORIGIN,
+]
+  .filter(Boolean)
+  .flatMap((value) => value.split(","))
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("CORS not allowed for this origin"));
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
@@ -29,6 +43,15 @@ app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/auth", require("./routes/authRoutes"));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`Server running on port ${PORT}`)
-);
+
+const startServer = async () => {
+  await connectDB();
+  await bootstrapAdmin();
+
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+};
+
+startServer().catch((error) => {
+  console.error("Failed to start server:", error);
+  process.exit(1);
+});

@@ -16,7 +16,7 @@ export const downloadInvoice = async (orderId) => {
     document.body.appendChild(link);
     link.click();
     link.remove();
-  } catch (err) {
+  } catch {
     alert("Failed to download invoice");
   }
 };

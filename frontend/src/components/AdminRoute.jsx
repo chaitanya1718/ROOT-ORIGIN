@@ -4,7 +4,7 @@ const AdminRoute = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem("admin"));
 
   if (!admin || admin.role !== "admin") {
-    return <Navigate to="/admin/login" />;
+    return <Navigate to="/admin/login" replace />;
   }
 
   return children;

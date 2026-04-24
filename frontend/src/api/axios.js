@@ -24,11 +24,15 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const isAuthCheck = error.config?.url?.includes("/auth/me");
+    const isAdminPath = window.location.pathname.startsWith("/admin");
+    const hasAdminSession = Boolean(localStorage.getItem("admin"));
 
     if (error.response?.status === 401 && !isAuthCheck) {
       localStorage.removeItem("user");
       localStorage.removeItem("admin");
-      window.location.href = "/login";
+      localStorage.removeItem("userInfo");
+      window.location.href =
+        isAdminPath || hasAdminSession ? "/admin/login" : "/login";
     }
 
     return Promise.reject(error);

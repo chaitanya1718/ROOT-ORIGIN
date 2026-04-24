@@ -6,10 +6,7 @@ import sufiyan from "../assets/sufiyan.jpg";
 import mahesh from "../assets/mahesh.jpeg";
 import shubham from "../assets/shubham.jpeg";
 import chaithu from "../assets/chaithu.jpg";
-import logo from "../assets/logo.png";
-import {Link} from "react-router-dom";
 import DefaultHeader from "./DefaultHeader";
-
 
 const developers = [
   {
@@ -37,60 +34,45 @@ const developers = [
 const About = () => {
   return (
     <section className="w-full py-12 px-6">
-<DefaultHeader/>
- 
-      {/* ===== Services Section ===== */}
+      <DefaultHeader />
+
       <div className="features flex justify-around items-center py-8 flex-wrap gap-6">
-        
-        {/* Service 1 */}
         <div className="service-card bg-cyan-300 w-80 h-60 rounded-xl p-5 flex flex-col items-center text-center">
           <span className="text-5xl">
             <TbBottleFilled />
           </span>
-          <h3 className="text-xl font-semibold mt-3">
-            Fresh Dairy Delivery
-          </h3>
+          <h3 className="text-xl font-semibold mt-3">Fresh Dairy Delivery</h3>
           <p className="text-sm mt-2 text-cyan-900">
-            Milk and curd delivered daily to your doorstep with
-            guaranteed freshness.
+            Milk and curd delivered daily to your doorstep with guaranteed
+            freshness.
           </p>
         </div>
 
-        {/* Service 2 */}
         <div className="service-card bg-cyan-300 w-80 h-60 rounded-xl p-5 flex flex-col items-center text-center">
           <span className="text-5xl">
             <IoIceCreamSharp />
           </span>
-          <h3 className="text-xl font-semibold mt-3">
-            Premium Ice Creams
-          </h3>
+          <h3 className="text-xl font-semibold mt-3">Premium Ice Creams</h3>
           <p className="text-sm mt-2 text-cyan-900">
-            Indulge in rich, creamy ice creams made from pure dairy and
-            natural ingredients.
+            Indulge in rich, creamy ice creams made from pure dairy and natural
+            ingredients.
           </p>
         </div>
 
-        {/* Service 3 */}
         <div className="service-card bg-cyan-300 w-80 h-60 rounded-xl p-5 flex flex-col items-center text-center">
           <span className="text-5xl">
             <FaVanShuttle />
           </span>
-          <h3 className="text-xl font-semibold mt-3">
-            Daily Subscription Plans
-          </h3>
+          <h3 className="text-xl font-semibold mt-3">Daily Subscription Plans</h3>
           <p className="text-sm mt-2 text-cyan-900">
-            Subscribe once and receive fresh nutrition essentials every
-            day, hassle-free.
+            Subscribe once and receive fresh nutrition essentials every day,
+            hassle-free.
           </p>
         </div>
-
       </div>
 
-      {/* ===== Developers Section ===== */}
       <div className="mt-16">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Meet Our Developers
-        </h2>
+        <h2 className="text-3xl font-bold text-center mb-10">Meet Our Developers</h2>
 
         <div className="flex justify-center gap-8 flex-wrap">
           {developers.map((dev, index) => (
@@ -109,7 +91,6 @@ const About = () => {
           ))}
         </div>
       </div>
-
     </section>
   );
 };

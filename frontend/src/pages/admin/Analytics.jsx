@@ -1,24 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import api from "../../api/axios";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 
-const COLORS = [
-  "#22c55e",
-  "#3b82f6",
-  "#f97316",
-  "#ef4444",
-  "#a855f7",
-];
+const COLORS = ["#22c55e", "#3b82f6", "#f97316", "#ef4444", "#a855f7"];
 
 const Analytics = () => {
   const [searchParams] = useSearchParams();
@@ -30,23 +15,20 @@ const Analytics = () => {
   const [pieData, setPieData] = useState([]);
   const [barData, setBarData] = useState([]);
 
+  async function loadOrders() {
+    const { data } = await api.get("/orders");
+    setOrders(data);
+  }
+
   useEffect(() => {
     loadOrders();
   }, []);
 
-
-
-  const loadOrders = async () => {
-    const { data } = await api.get("/orders");
-    setOrders(data);
-  };
-
-  // ===== PIE =====
   const buildPie = () => {
     const map = {};
 
-    orders.forEach(order => {
-      order.items.forEach(item => {
+    orders.forEach((order) => {
+      order.items.forEach((item) => {
         const tag = item.tag || "unknown";
         const value =
           metric === "revenue"
@@ -58,19 +40,18 @@ const Analytics = () => {
     });
 
     setPieData(
-      Object.keys(map).map(k => ({
+      Object.keys(map).map((k) => ({
         name: k,
         value: Number(map[k].toFixed(2)),
       }))
     );
   };
 
-  // ===== BAR =====
   const buildBar = (category) => {
     const map = {};
 
-    orders.forEach(order => {
-      order.items.forEach(item => {
+    orders.forEach((order) => {
+      order.items.forEach((item) => {
         if (item.tag === category) {
           const value =
             metric === "revenue"
@@ -83,31 +64,30 @@ const Analytics = () => {
     });
 
     setBarData(
-      Object.keys(map).map(name => ({
+      Object.keys(map).map((name) => ({
         name,
         value: Number(map[name].toFixed(2)),
       }))
     );
   };
 
-useEffect(() => {
-  if (orders.length === 0) return;
+  useEffect(() => {
+    if (orders.length === 0) return;
 
-  buildPie();
-
-  if (selectedCategory) {
-    buildBar(selectedCategory);
-  }
-}, [orders, metric, selectedCategory]);
+    buildPie();
+    if (selectedCategory) {
+      buildBar(selectedCategory);
+    }
+    // buildPie and buildBar are intentionally tied to current state in this component.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orders, metric, selectedCategory]);
 
   return (
     <div style={{ padding: "1.5rem" }}>
       <h1 className="text-3xl mb-4">Analytics</h1>
 
-      {/* TOGGLE */}
       <div className="flex gap-3 mb-4">
         <button
-
           onClick={() => setMetric("quantity")}
           className={metric === "quantity" ? "bg-black text-white px-3" : "px-3 border"}
         >
@@ -120,10 +100,8 @@ useEffect(() => {
           Revenue
         </button>
       </div>
-<p>The below numbers are in rupeess and quantity of stock</p>
+      <p>The below numbers are in rupees and quantity of stock</p>
       <div className="flex gap-8 flex-wrap">
-        {/* PIE */}
-        
         <PieChart width={400} height={400}>
           <Pie
             data={pieData}
@@ -142,7 +120,6 @@ useEffect(() => {
           <Tooltip />
         </PieChart>
 
-        {/* BAR */}
         {selectedCategory && (
           <BarChart width={500} height={350} data={barData}>
             <XAxis dataKey="name" />

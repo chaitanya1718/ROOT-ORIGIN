@@ -144,7 +144,7 @@ const resendOtp = async (req, res) => {
 // ================= FORGOT PASSWORD =================
 // ================= FORGOT PASSWORD =================
 const forgotPassword = async (req, res) => {
-  const { email } = req.body;
+  const { email, resetPath } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -165,7 +165,12 @@ const forgotPassword = async (req, res) => {
   user.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
   await user.save();
 
-  const resetLink = `http://localhost:5173/reset-password/${resetToken}`;
+  const frontendBaseUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+  const safeResetPath =
+    typeof resetPath === "string" && resetPath.startsWith("/")
+      ? resetPath
+      : "/reset-password";
+  const resetLink = `${frontendBaseUrl}${safeResetPath}/${resetToken}`;
 
   await sendResetEmail(user.email, resetLink);
 

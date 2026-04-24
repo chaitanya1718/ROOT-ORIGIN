@@ -1,16 +1,8 @@
-const nodemailer = require("nodemailer");
+const transporter = require("../config/email");
 
 const sendResetEmail = async (email, resetLink) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
   await transporter.sendMail({
-    from: process.env.EMAIL_USER,
+    from: `"Root Origin" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Reset Your Password",
     html: `
@@ -20,8 +12,6 @@ const sendResetEmail = async (email, resetLink) => {
       <p>This link expires in 15 minutes.</p>
     `,
   });
-
-
 };
 
 module.exports = sendResetEmail;

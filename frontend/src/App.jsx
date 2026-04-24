@@ -25,11 +25,11 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminOrders from "./pages/admin/AdminOrders.jsx";
 import Analytics from "./pages/admin/Analytics.jsx";
 
-
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminProducts from "./pages/admin/AdminProducts";
-
+import AdminForgotPassword from "./pages/admin/AdminForgotPassword";
+import AdminResetPassword from "./pages/admin/AdminResetPassword";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -46,10 +46,10 @@ function App() {
 
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route path="/" element={<Hero/>}/>
+        <Route path="/" element={<Hero />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-             <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route element={<UserLayout />}>
           <Route
             path="/orders"
@@ -68,7 +68,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/home"
             element={
@@ -77,7 +77,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-         <Route path="/categories/:categoryName" element={<CategoriesPage />} />
+          <Route
+            path="/categories/:categoryName"
+            element={<CategoriesPage />}
+          />
           <Route path="/bulk-products" element={<BulkProducts />} />
           <Route path="/account" element={<Account />} />
           <Route path="/cart" element={<Cart />} />
@@ -85,11 +88,18 @@ function App() {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/aboutsec" element={<Aboutsec />} />
           <Route path="/deals" element={<CurrentDeals />} />
-
         </Route>
 
         {/* admin login */}
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/forgot-password"
+          element={<AdminForgotPassword />}
+        />
+        <Route
+          path="/admin/reset-password/:token"
+          element={<AdminResetPassword />}
+        />
 
         <Route
           element={
@@ -99,7 +109,7 @@ function App() {
           }
         >
           <Route path="/admin/analytics" element={<Analytics />} />
-          <Route path="/admin/orders" element={<AdminOrders />}/>
+          <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="/admin/orders" element={<AdminOrders />} />

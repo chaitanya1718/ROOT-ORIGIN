@@ -30,20 +30,13 @@ const Address = () => {
       {addresses.length === 0 && <p>No addresses found</p>}
 
       {addresses.map((addr) => (
-        <div 
-          key={addr._id}
-          className="border border-cyan-300 rounded-lg p-3 mb-3"
-        >
-          {addr.isDefault && (
-            <span className="text-xs bg-cyan-300 px-2 rounded">
-              DEFAULT
-            </span>
-          )}
+        <div key={addr._id} className="border border-cyan-300 rounded-lg p-3 mb-3">
+          {addr.isDefault && <span className="text-xs bg-cyan-300 px-2 rounded">DEFAULT</span>}
 
           <p className="font-medium">{addr.name}</p>
           <p>{addr.hno}, {addr.street}</p>
           <p>{addr.city} - {addr.pincode}</p>
-          <p>📞 {addr.mobile}</p>
+          <p>Mobile: {addr.mobile}</p>
 
           <div className="flex gap-3 mt-2">
             <button
@@ -56,17 +49,13 @@ const Address = () => {
               Edit
             </button>
 
-            <button
-              className="text-red-500"
-              onClick={() => deleteAddress(addr._id)}
-            >
+            <button className="text-red-500" onClick={() => deleteAddress(addr._id)}>
               Delete
             </button>
           </div>
         </div>
       ))}
 
-      {/* ADD / EDIT FORM */}
       <button
         className="bg-cyan-200 p-2 rounded mt-2"
         onClick={() => {
